@@ -8,8 +8,7 @@ import requests
 
 # --- Configuration ---
 # Path to your saved model
-model_path = '/content/drive/MyDrive/password_ai_model_v2.pkl'
-
+model_path = 'password_ai_model_v2.pkl'
 # --- Load Model (Cached for performance) ---
 @st.cache_resource
 def load_model():
