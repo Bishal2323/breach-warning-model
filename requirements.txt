@@ -1,5 +1,3 @@
+torch
 streamlit
-joblib
-scikit-learn
-pandas
 requests
