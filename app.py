@@ -34,11 +34,9 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
 @st.cache_resource
 def load_evaluator():
     return PasswordEvaluator()
-
 
 try:
     evaluator = load_evaluator()
@@ -84,7 +82,6 @@ def estimate_crack_time(adjusted_entropy, breach_count, breach_checked):
     else:
         return "Centuries / Infeasible", "Beyond classical brute-force capacity."
 
-
 def generate_suggestions(password, res):
     suggestions = []
 
@@ -107,13 +104,11 @@ def generate_suggestions(password, res):
     has_lower = any(c.islower() for c in password)
     has_digit = any(c.isdigit() for c in password)
     has_sym = any(not c.isalnum() for c in password)
-
     missing_classes = []
     if not has_upper: missing_classes.append("uppercase letters")
     if not has_lower: missing_classes.append("lowercase letters")
     if not has_digit: missing_classes.append("numbers")
     if not has_sym: missing_classes.append("special symbols")
-
     if missing_classes:
         suggestions.append(f"🔠 **Expand character set**: Add {', '.join(missing_classes)} to expand base entropy.")
 
@@ -145,7 +140,6 @@ if password:
         """,
         unsafe_allow_html=True
     )
-
     st.progress(min(1.0, score / 100.0))
 
     # Breach banner: three distinct states
@@ -172,7 +166,6 @@ if password:
         """,
         unsafe_allow_html=True
     )
-
     col1, col2, col3 = st.columns(3)
     col1.metric("Adjusted Entropy", f"{res['adjusted_entropy']} bits", help=f"Raw L·log2(R) = {res['raw_entropy']} bits, discounted for repeats and sequences")
     col2.metric("Transformer P_ML", f"{res['p_ml']:.3f}", help="Neural structural analysis combining randomness vs human patterns")
